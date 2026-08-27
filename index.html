@@ -255,15 +255,18 @@ label {
   TradersLee © 2026 — Automated Trading Dashboard
 </div>
 
-<script>
+<s  alert("Deriv connection will be added when the trading API is connected.
+  const signal = signals[Math.floor(Math.random() * signals.length)];function connectDeriv() {
+    const clientId = "YOUR_APP_ID";
+    const redirectUri = "https://traderslee.github.io/Traderslee-bot/";
 
-function connectDeriv() {
-  alert("Deriv connection will be added when the trading API is connected.");
+    const authUrl =
+        "https://oauth.deriv.com/oauth2/authorize" +
+        "?app_id=" + encodeURIComponent(clientId) +
+        "&redirect_uri=" + encodeURIComponent(redirectUri);
+
+    window.location.href = authUrl;
 }
-
-function aiSignal() {
-  const signals = ["OVER", "UNDER"];
-  const signal = signals[Math.floor(Math.random() * signals.length)];
 
   document.getElementById("signal").innerHTML =
     "AI Signal: <strong>" + signal + "</strong>";
