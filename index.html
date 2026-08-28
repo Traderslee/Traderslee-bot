@@ -253,17 +253,16 @@ label {
 
 <div class="footer">
   TradersLee © 2026 — Automated Trading Da
-    const authUrl =
-        "https://oauth.deriv.com/oauth2/authorize" +
-        "?app_id=" + encodeURIComponent(34eooaCsIzugXCNCv9jxI) +
-        "&redirect_uri=" + encodeURIComponent(redirectUri);
-async function connectDeriv() {
+    async function connectDeriv() {
     const CLIENT_ID = "34eooaCsIzugXCNCv9jxI";
     const REDIRECT_URI = "https://traderslee.github.io/Traderslee-bot/";
 
     const array = crypto.getRandomValues(new Uint8Array(64));
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~";
-
+const authUrl =
+  "https://oauth.deriv.com/oauth2/authorize" +
+  "?app_id=" + encodeURIComponent(CLIENT_ID) +
+  "&redirect_uri=" + encodeURIComponent(REDIRECT_URI);
     const codeVerifier = Array.from(array)
         .map(v => chars[v % chars.length])
         .join("");
