@@ -258,11 +258,7 @@ label {
     const REDIRECT_URI = "https://traderslee.github.io/Traderslee-bot/";
 
     const array = crypto.getRandomValues(new Uint8Array(64));
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~";
-const authUrl =
-  "https://oauth.deriv.com/oauth2/authorize" +
-  "?app_id=" + encodeURIComponent(CLIENT_ID) +
-  "&redirect_uri=" + encodeURIComponent(REDIRECT_URI);
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklm
     const codeVerifier = Array.from(array)
         .map(v => chars[v % chars.length])
         .join("");
@@ -286,7 +282,17 @@ const authUrl =
 
     sessionStorage.setItem("pkce_code_verifier", codeVerifier);
     sessionStorage.setItem("oauth_state", state);
+const authUrl = new URL("https://auth.deriv.com/oauth2/auth");
 
+authUrl.searchParams.set("response_type", "code");
+authUrl.searchParams.set("client_id", CLIENT_ID);
+authUrl.searchParams.set("redirect_uri", REDIRECT_URI);
+authUrl.searchParams.set("scope", "trade");
+authUrl.searchParams.set("state", state);
+authUrl.searchParams.set("code_challenge", codeChallenge);
+authUrl.searchParams.set("code_challenge_method", "S256");
+
+window.location.href = authUrl.toString();
     const authUrl = new URL("https://auth.deriv.com/oauth2/auth");
 
     authUrl.searchParams.set("response_type", "code");
