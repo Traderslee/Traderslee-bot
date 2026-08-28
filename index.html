@@ -298,9 +298,7 @@ const authUrl =
     authUrl.searchParams.set("code_challenge_method", "S256");
 
     window.location.href = authUrl.toString();
-}
-    window.location.href = authUrl;
-}
+
 
   document.getElementById("signal").innerHTML =
     "AI Signal: <strong>" + signal + "</strong>";
